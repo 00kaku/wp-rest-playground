@@ -1,0 +1,36 @@
+.posts{
+	margin:auto;
+	max-width: 1440px;
+	margin-top: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+	column-gap: 5px;
+	padding: 20px;
+}
+
+.card__inner img{
+	width:100%;
+	border-radius: 10px;
+}
+
+.text{
+	position: absolute;
+	top: 25%;
+	left:20%;
+	color: #222;
+	opacity: 0;
+	font-size: 24px;
+}
+
+
+.card__inner{
+	position: relative;
+}
+
+.card__inner:hover img{
+	opacity: 0.3;
+}
+
+.card__inner:hover .text{
+	opacity:1;
+}

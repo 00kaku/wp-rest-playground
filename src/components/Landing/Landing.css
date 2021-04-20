@@ -1,13 +1,18 @@
 .Landing{
 	max-width: 750px;
-	height:500px;
-	margin-left: auto;
-	padding:50px;
-	margin-top:10%;
+	min-height:500px;
+	margin-left:auto;
+	padding:100px;
 	color: #fff;
 	text-shadow: 2px 2px #000;
 }
 
 .Landing h1 {
 		color:#bd3514;
+}
+
+@media only screen and (max-width: 768px){
+	.Landing {
+		padding: 70px;
+	}
 }

@@ -7,17 +7,19 @@ function App() {
   return (
 	  <div>
 	  	<Navbar />
-    	<div className="App">
 			<Switch>
 				<Route path="/" exact >
-					<Landing />
+					<div className="landing__container">
+						<Landing />
+					</div>
 				</Route>
 				<Route path="/posts/:id" exact >
-					<Posts />
+					<div className="App">
+						<Posts />
+					</div>
 				</Route>
 			</Switch>
    		</div>
-	</div>
   );
 }
 
