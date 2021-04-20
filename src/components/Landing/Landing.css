@@ -1,0 +1,13 @@
+.Landing{
+	max-width: 750px;
+	height:500px;
+	margin-left: auto;
+	padding:50px;
+	margin-top:10%;
+	color: #fff;
+	text-shadow: 2px 2px #000;
+}
+
+.Landing h1 {
+		color:#bd3514;
+}
