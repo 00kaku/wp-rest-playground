@@ -1,7 +1,7 @@
 .Landing{
 	max-width: 750px;
 	min-height:500px;
-	margin-left:auto;
+	margin-left:calc(50% - 10px);
 	padding:100px;
 	color: #fff;
 	text-shadow: 2px 2px #000;
@@ -11,8 +11,39 @@
 		color:#bd3514;
 }
 
-@media only screen and (max-width: 768px){
+.search__input{
+		width:100%;
+		height:40px;
+		margin-top:5px;
+		text-align: center;
+		cursor: pointer;
+}
+.fa-search{
+	font-size: 24px;
+}
+
+.search__input input[type="text"]{
+	width:300px;
+	height:30px;
+	border:none;
+	opacity:0.6;
+	margin-right:5px;
+	border-radius: 5px;
+}
+
+
+@media only screen and (max-width: 600px){
 	.Landing {
-		padding: 70px;
+		padding: 20px;
+		margin-left:auto;
+		padding-top: 50px;
+	}
+}
+
+@media only screen and (min-width: 601px) and (max-width:840px){
+	.Landing {
+		padding: 20px;
+		margin-left:auto;
+		padding-top: 200px;
 	}
 }

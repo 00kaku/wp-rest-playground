@@ -1,7 +1,9 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Landing from './components/Landing/Landing';
-import Posts from './components/Posts/Posts';
+import PostsCategory from './containers/PostsCategory/PostsCategory';
+import PostsSearch from './containers/PostsSearch/PostsSearch';
+import Nomatch from './components/Nomatch/Nomatch';
 import {Switch, Route} from 'react-router-dom';
 function App() {
   return (
@@ -15,8 +17,16 @@ function App() {
 				</Route>
 				<Route path="/posts/:id" exact >
 					<div className="App">
-						<Posts />
+						<PostsCategory />
 					</div>
+				</Route>
+				<Route path="/search" >
+					<div className="App">
+						<PostsSearch />
+					</div>
+				</Route>
+				<Route path="*" >
+					<Nomatch />
 				</Route>
 			</Switch>
    		</div>

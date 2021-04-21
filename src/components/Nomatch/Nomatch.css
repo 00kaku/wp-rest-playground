@@ -1,0 +1,33 @@
+.nomatch{
+	max-width:1440px;
+	max-height:500px;
+	margin:auto;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #222;
+}
+
+.nomatch__inner{
+	max-width: 500px;
+	min-height: 100px;
+	margin-left: calc(50% - 250px);
+	padding-top: calc(25% - 50px);
+	text-align: center;
+}
+
+.nomatch__inner p{
+	margin-bottom: 20px;
+}
+
+.nomatch__button {
+	background:#222;
+	border-radius: 2px;
+	padding:5px;
+	color:#fff;
+}
+
+@media only screen and (max-width:600px){
+.nomatch__inner{
+	margin-left: 0;
+}
+
+}

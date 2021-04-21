@@ -7,7 +7,7 @@ const Navbar = () => {
 const [nav,setNav] = useState('');
 
 useEffect(()=>{
-	axios.get("/nav")
+	axios.get("/wc/v1/nav")
 	.then(res => setNav(res.data))
 },[nav])
 
