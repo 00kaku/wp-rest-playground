@@ -19,29 +19,34 @@ function fetch_posts( $params ) {
 
 	$category    = $params['category'];
 	$category_id = get_cat_ID( $category );
-	$posts       = get_posts(
-		array(
-			'category' => $category_id,
-		)
-	);
+	if ( $category_id ) {
+		$posts = get_posts(
+			array(
+				'category'       => $category_id,
+				'posts_per_page' => '100',
+			)
+		);
 
-	if ( empty( $posts ) ) {
-		return 'oops';
+		if ( empty( $posts ) ) {
+			return 'oops';
+		}
+
+		$data = array();
+		$i    = 0;
+
+		foreach ( $posts as $post ) {
+			$data[ $i ]['id']                          = $post->ID;
+			$data[ $i ]['title']                       = $post->post_title;
+			$data[ $i ]['content']                     = $post->post_content;
+			$data[ $i ]['featured_image']['thumbnail'] = get_the_post_thumbnail_url( $post->ID, 'thumbnail' );
+			$data[ $i ]['featured_image']['large']     = get_the_post_thumbnail_url( $post->ID, 'large' );
+			$i++;
+		}
+
+		return $data;
+	} else {
+		return 'category does not exist';
 	}
-
-	$data = array();
-	$i    = 0;
-
-	foreach ( $posts as $post ) {
-		$data[ $i ]['id']                          = $post->ID;
-		$data[ $i ]['title']                       = $post->post_title;
-		$data[ $i ]['content']                     = $post->post_content;
-		$data[ $i ]['featured_image']['thumbnail'] = get_the_post_thumbnail_url( $post->ID, 'thumbnail' );
-		$data[ $i ]['featured_image']['large']     = get_the_post_thumbnail_url( $post->ID, 'large' );
-		$i++;
-	}
-
-	return $data;
 }
 	add_action(
 		'rest_api_init',
