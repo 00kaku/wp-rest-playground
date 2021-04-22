@@ -15,7 +15,7 @@ const Post = () => {
 		const id = window.location.pathname.split( '/' ).pop();
 
 		axios
-			.get( `wp/v2/posts?_embed&include=${ id }` )
+			.get( `/wp-json/wp/v2/posts?_embed&include=${ id }` )
 			.then( ( res ) => {
 				setPost( res.data[ 0 ] );
 				setLoading( false );
@@ -23,7 +23,7 @@ const Post = () => {
 			.catch( ( err ) => console.log( err ) );
 
 		axios
-			.get( `wp/v2/comments?post=${ id }` )
+			.get( `/wp-json/wp/v2/comments?post=${ id }` )
 			.then( ( res ) => setComments( res.data ) );
 	}, [] );
 

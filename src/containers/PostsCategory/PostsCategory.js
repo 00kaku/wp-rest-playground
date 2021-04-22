@@ -9,7 +9,7 @@ const PostsCategory = () => {
 	useEffect( () => {
 		const category = window.location.pathname.split( '/' ).pop();
 		axios
-			.get( `/wc/v1/posts?category=${ category }` )
+			.get( `/wp-json/wc/v1/posts?category=${ category }` )
 			.then( ( res ) => {
 				if ( res.data === 'category does not exist' ) {
 					setNoPost( true );

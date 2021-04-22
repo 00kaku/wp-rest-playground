@@ -8,7 +8,7 @@ const PostsSearch = () => {
 	const [ isLoading, setLoading ] = useState( true );
 	useEffect( () => {
 		axios
-			.get( `/wp/v2/posts?_embed&search=${ term }` )
+			.get( `/wp-json/wp/v2/posts?_embed&search=${ term }` )
 			.then( ( res ) => {
 				setPosts(
 					res.data.map( ( post ) => {

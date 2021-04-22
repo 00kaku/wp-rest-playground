@@ -30,7 +30,20 @@
 	margin-right:5px;
 	border-radius: 5px;
 }
+.login__button{
+	margin-left: calc( 50% - 72px);
+	border:none;
+}
 
+.login__button button{
+	background:#222;
+	color: #fff;
+	font-size: medium;
+	font-weight: bold;
+	padding: 15px;
+	width:144px;
+	border-radius: 10px;
+}
 
 @media only screen and (max-width: 600px){
 	.Landing {
@@ -46,6 +59,11 @@
 		margin-left:auto;
 		padding-top: 0px;
 		font-size: small;
+	}
+
+	.login__button button{
+		padding: 20px;
+		margin-top: 20px;
 	}
 }
 
