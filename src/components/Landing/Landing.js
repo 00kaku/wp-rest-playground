@@ -34,7 +34,7 @@ const Landing = () =>{
 				Vestibulum nisl lacus, consequat semper semper ac, commodo nec lectus.</h2>
 			<div className="search__input" >
 				<input type="text" placeholder="Search for a fictional character...." onChange={e => setTerm(e.target.value)}
-				onKeyDown ={event =>  event.key == 'Enter' ? search () : null    }/>
+				onKeyDown ={event =>  event.key === 'Enter' ? search () : null    }/>
 				<span><i className="fa fa-search" onClick={(event)=>{search()}}></i></span>
 			</div>
 		</div>

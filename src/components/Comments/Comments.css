@@ -1,0 +1,39 @@
+.comment{
+	border-top: 1px solid rgba(255, 255, 255, 0.5);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	background-color: lightgray;
+	padding: 5px;
+	display:flex;
+	align-items:center;
+	border-radius: 5px;
+}
+
+.comment img {
+	margin-right: 5px;
+}
+
+.comment h4 {
+	margin-right: 15px;
+}
+
+.comment p {
+	font-size:16px;
+}
+
+.comment_header{
+	display: flex;
+	align-items: center;
+}
+
+@media only screen and (max-width:600px){
+	.comment{
+		flex-direction: column;
+		align-items: bottom;
+	}
+
+	.comment_header{
+		align-self: flex-start;
+		margin-bottom:10px;
+		align-items: baseline;
+	}
+}

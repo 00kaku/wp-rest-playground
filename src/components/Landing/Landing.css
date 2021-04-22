@@ -40,10 +40,20 @@
 	}
 }
 
+@media only screen and (max-width: 320px){
+	.Landing {
+		padding: 20px;
+		margin-left:auto;
+		padding-top: 0px;
+		font-size: small;
+	}
+}
+
 @media only screen and (min-width: 601px) and (max-width:840px){
 	.Landing {
 		padding: 20px;
 		margin-left:auto;
 		padding-top: 200px;
+		font-size: medium;
 	}
 }

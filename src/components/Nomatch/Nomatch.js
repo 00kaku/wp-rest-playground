@@ -1,16 +1,8 @@
-import "./Nomatch.css"
-import {Link} from 'react-router-dom';
+import NomatchMessage from '../NomatchMessage/NomatchMessage';
 
 const Nomatch = ()  =>{
 	return (
-		<div className="nomatch">
-			<div className="nomatch__inner">
-					<h1>Error 404 <i className="fa fa-exclamation"></i></h1>
-					<p>The page you are looking for doesn't exist.</p>
-					<Link to="/" className="nomatch__button"> Go Home </Link>
-			</div>
-
-		</div>
+		<NomatchMessage isLoading={false} message={'The page you are looking for does not exist.'} title='Error 404'/>
 	)
 }
 export default Nomatch;
