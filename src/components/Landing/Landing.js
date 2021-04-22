@@ -47,7 +47,9 @@ const Landing = () => {
 						onClick={ search }
 						role="button"
 						tabIndex={ 0 }
-						onKeyDown={ search }
+						onKeyDown={ ( event ) =>
+							event.key === 'Enter' ? search() : null
+						}
 					/>
 				</span>
 			</div>

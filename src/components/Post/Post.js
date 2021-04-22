@@ -13,6 +13,7 @@ const Post = () => {
 
 	useEffect( () => {
 		const id = window.location.pathname.split( '/' ).pop();
+
 		axios
 			.get( `wp/v2/posts?_embed&include=${ id }` )
 			.then( ( res ) => {
@@ -32,16 +33,22 @@ const Post = () => {
 				<div className="comments__container">
 					<span
 						onClick={ () => setShowComments( false ) }
-						onKeyDown={ () => setShowComments( false ) }
+						onKeyDown={ ( event ) =>
+							event.key === 'Enter'
+								? setShowComments( false )
+								: null
+						}
 						role="button"
 						tabIndex={ 0 }
 					>
 						<i className="fa fa-arrow-left fa-lg back__button"></i>
 					</span>
 					<span
-						onClick={ window.history.back() }
+						onClick={ () => window.history.back() }
 						role="button"
-						onKeyDown={ window.history.back() }
+						onKeyDown={ ( event ) =>
+							event.key === 'Enter' ? window.history.back() : null
+						}
 						tabIndex={ 0 }
 					>
 						<i className="fa fa-window-close fa-lg"></i>
@@ -59,9 +66,13 @@ const Post = () => {
 				<div className="post">
 					<div className="post__close">
 						<span
-							onClick={ window.history.back() }
+							onClick={ () => window.history.back() }
 							role="button"
-							onKeyDown={ window.history.back() }
+							onKeyDown={ ( event ) =>
+								event.key === 'Enter'
+									? window.history.back()
+									: null
+							}
 							tabIndex={ 0 }
 						>
 							<i className="fa fa-window-close fa-lg"></i>
