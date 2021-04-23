@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# A React Js application that uses Wordpress Rest API as backend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It is a react application that uses a local wordpress website as the headless cms. Registered users can login into the website and can then post comments. All users 
+irrespective of login can search the posts based on some term from the home page. Users can also see posts segregated by categories using the navbar which is also fetched from the wordpress cms. Also each user can read the  approved comments on the posts. It also has 2 plugins that hook into the rest api and create custom end points for us to fetch data.
 
-## Available Scripts
+###### ReactJs is used for the structure of the website
+###### Wordpress Rest Api is used as backend data provider.
 
-In the project directory, you can run:
+#### Screenshots
+**Landing Page**
+![Screenshot from 2021-04-23 17-49-59](https://user-images.githubusercontent.com/22026768/115870242-97766f80-a45c-11eb-82d9-bc9dd1a91274.png)
 
-### `npm start`
+**Posts' List Page**
+![Screenshot from 2021-04-23 17-50-20](https://user-images.githubusercontent.com/22026768/115870283-a78e4f00-a45c-11eb-831d-919a5789e1d9.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+** Post Page ** 
+![Screenshot from 2021-04-23 17-50-35](https://user-images.githubusercontent.com/22026768/115870320-b7a62e80-a45c-11eb-82c7-cc25dcb00eb2.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Comments Page**
+![Screenshot from 2021-04-23 17-50-45](https://user-images.githubusercontent.com/22026768/115870387-d1477600-a45c-11eb-923e-1bc359da0f22.png)
+![Screenshot from 2021-04-23 17-51-09](https://user-images.githubusercontent.com/22026768/115870391-d278a300-a45c-11eb-89a0-765f73fa571f.png)
 
-### `npm test`
+** Wordpress admin page for url format**
+![Screenshot from 2021-04-23 17-49-35](https://user-images.githubusercontent.com/22026768/115870425-ddcbce80-a45c-11eb-8684-31e668693507.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+** Error 404 Page **
+![Screenshot from 2021-04-23 17-51-29](https://user-images.githubusercontent.com/22026768/115870459-e7553680-a45c-11eb-85b0-33956123dfab.png)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### How to use it
+1. Download the github repo.
+2. Create a local wordpress installation using any tool of your choice. In the project LocalWp by flywheel is used. (**https://localwp.com/**).
+3. Copy the content of **Wordpress Code/Plugins/** into the plugins directory of your local install to create the functionality of custom end points in the api.
+4. Go to the wordpress admin panel and activated the 2 new plugins.
+5. Change the **REACT_BASE_URL** variable's value with your local wordpress installation's url.
+6. Create some posts in your wordpress installation with some separate categories.
+7. Create a menu in wordpress admin panel with the name **menu**.
+8. Add custom links in the menu with the url in format **/posts/:your_category_here:**. For example for a category DC the url will look like /posts/dc.
+9. In the root folder of you application run **npm -i** to install the dependencies.
+10. Run the local wordpress installation.
+11. Run the application using **npm start**.
