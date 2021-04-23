@@ -26,28 +26,11 @@ const Navbar = ( { loggedIn, setLoggedIn, user, setUser } ) => {
 
 	return (
 		<div className="nav-main">
-			<div className="nav-heading">
-				{ user && (
+			{ loggedIn && user ? (
+				<div className="user-nav">
 					<span className="user__diaplay__icon">
 						{ user?.user_display_name.substr( 0, 1 ) }
 					</span>
-				) }
-				<h3>
-					<a href="/">WP-REST-PLAYGROUND </a>
-				</h3>
-				<span>
-					<i
-						className="fas fa-bars icon"
-						onClick={ menuToggle }
-						onKeyDown={ menuToggle }
-						role="button"
-						tabIndex={ 0 }
-					></i>
-				</span>
-			</div>
-			<div dangerouslySetInnerHTML={ { __html: nav } }></div>
-			{ loggedIn && user ? (
-				<div className="user-nav">
 					<button
 						onClick={ () => handleLogout() }
 						onKeyDown={ ( event ) =>
@@ -60,6 +43,21 @@ const Navbar = ( { loggedIn, setLoggedIn, user, setUser } ) => {
 			) : (
 				''
 			) }
+			<div className="nav-heading">
+				<h2>
+					<a href="/">WP-REST-PLAYGROUND </a>
+				</h2>
+				<span>
+					<i
+						className="fas fa-bars icon"
+						onClick={ menuToggle }
+						onKeyDown={ menuToggle }
+						role="button"
+						tabIndex={ 0 }
+					></i>
+				</span>
+			</div>
+			<div dangerouslySetInnerHTML={ { __html: nav } }></div>
 		</div>
 	);
 };
