@@ -34,6 +34,7 @@ const Post = ( { user } ) => {
 				<Comments
 					comments={ comments }
 					setShowComments={ setShowComments }
+					user={ user }
 				/>
 			) : (
 				( error && <Error /> ) || (
