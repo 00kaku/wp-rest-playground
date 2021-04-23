@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import axios from '../../axios';
 import Posts from '../../components/Posts/Posts';
 import NomatchMessage from '../../components/NomatchMessage/NomatchMessage';
+import Error from '../../components/Error/Error';
 const PostsSearch = () => {
 	const term = localStorage.getItem( 'term' );
 	const [ posts, setPosts ] = useState( [] );
 	const [ isLoading, setLoading ] = useState( true );
+	const [ error, setError ] = useState( null );
 	useEffect( () => {
 		axios
 			.get( `/wp-json/wp/v2/posts?_embed&search=${ term }` )
@@ -27,20 +29,19 @@ const PostsSearch = () => {
 				);
 				setLoading( false );
 			} )
-			.catch( ( err ) => console.log( err ) );
+			.catch( ( err ) => setError( err ) );
 	}, [ term ] );
 
-	return (
-		<div>
-			{ 0 === posts.length ? (
-				<NomatchMessage
-					message={ 'No post contain the term you searched for.' }
-					isLoading={ isLoading }
-				/>
-			) : (
-				<Posts posts={ posts } />
-			) }
-		</div>
-	);
+	const postData =
+		0 === posts.length ? (
+			<NomatchMessage
+				message={ 'No post contain the term you searched for.' }
+				isLoading={ isLoading }
+			/>
+		) : (
+			<Posts posts={ posts } />
+		);
+
+	return <div>{ error !== null ? <Error /> : postData }</div>;
 };
 export default PostsSearch;

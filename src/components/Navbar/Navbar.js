@@ -6,7 +6,10 @@ const Navbar = () => {
 	const [ nav, setNav ] = useState( '' );
 
 	useEffect( () => {
-		axios.get( '/wp-json/wc/v1/nav' ).then( ( res ) => setNav( res.data ) );
+		axios
+			.get( '/wp-json/wc/v1/nav' )
+			.then( ( res ) => setNav( res.data ) )
+			.catch( ( err ) => setNav( '<p>Failed to load Nav</p>' ) );
 	}, [ nav ] );
 
 	const menuToggle = () => {

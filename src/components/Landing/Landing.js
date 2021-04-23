@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './Landing.css';
-import axios from '../../axios';
 import { Redirect, Link } from 'react-router-dom';
 
 const Landing = () => {
@@ -10,12 +9,7 @@ const Landing = () => {
 	const search = () => {
 		if ( term ) {
 			localStorage.setItem( 'term', term );
-			axios
-				.get( `/wp-json/wp/v2/posts?search=${ term }` )
-				.then( ( res ) => {
-					setRedirect( true );
-				} )
-				.catch( ( err ) => console.log( err ) );
+			setRedirect( true );
 		}
 	};
 
@@ -53,9 +47,13 @@ const Landing = () => {
 					/>
 				</span>
 			</div>
-			<Link to="/login" className="login__button">
-				<button>Login</button>
-			</Link>
+			{ localStorage.getItem( 'token' ) ? (
+				''
+			) : (
+				<Link to="/login" className="login__button">
+					<button>Login</button>
+				</Link>
+			) }
 		</div>
 	);
 };

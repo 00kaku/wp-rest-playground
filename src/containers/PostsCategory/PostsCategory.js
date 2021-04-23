@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from '../../axios';
 import { Redirect } from 'react-router-dom';
 import Posts from '../../components/Posts/Posts';
+import Error from '../../components/Error/Error';
 
 const PostsCategory = () => {
 	const [ posts, setPosts ] = useState( [] );
 	const [ noPost, setNoPost ] = useState( false );
+	const [ error, setError ] = useState( null );
 	useEffect( () => {
 		const category = window.location.pathname.split( '/' ).pop();
 		axios
@@ -17,16 +19,14 @@ const PostsCategory = () => {
 					setPosts( res.data );
 				}
 			} )
-			.catch( ( err ) => console.log( err ) );
+			.catch( ( err ) => setError( err ) );
 	}, [] );
 
 	if ( noPost === true ) {
 		return <Redirect to="/404" />;
 	}
 	return (
-		<div>
-			<Posts posts={ posts } />
-		</div>
+		<div>{ error !== null ? <Error /> : <Posts posts={ posts } /> }</div>
 	);
 };
 
