@@ -5,7 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 const Landing = () => {
 	const [ term, setTerm ] = useState( '' );
 	const [ redirect, setRedirect ] = useState( false );
-
+	const user = JSON.parse( localStorage.getItem( 'user' ) ) || '';
 	const search = () => {
 		if ( term ) {
 			localStorage.setItem( 'term', term );
@@ -47,7 +47,7 @@ const Landing = () => {
 					/>
 				</span>
 			</div>
-			{ localStorage.getItem( 'token' ) ? (
+			{ user ? (
 				''
 			) : (
 				<Link to="/login" className="login__button">

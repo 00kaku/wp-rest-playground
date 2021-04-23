@@ -12,11 +12,6 @@
 	height:calc( 100vh - 50px );
 }
 
-.App{
-	max-width: 1440px;
-	margin:auto;
-}
-
 a{
 	text-decoration: none;
 	color: inherit;

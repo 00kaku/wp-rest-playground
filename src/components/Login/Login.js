@@ -4,10 +4,10 @@ import { Redirect } from 'react-router-dom';
 import Error from '../Error/Error';
 import './Login.css';
 
-const Login = () => {
+const Login = ( { setLoggedIn } ) => {
 	const [ username, setUsername ] = useState( '' );
 	const [ password, setPassword ] = useState( '' );
-	const [ loggedIn, setLoggedIn ] = useState( false );
+	const [ redirect, setRedirect ] = useState( false );
 	const [ error, setError ] = useState( '' );
 	const [ failed, setFailed ] = useState( '' );
 	const formSubmit = ( e ) => {
@@ -26,10 +26,10 @@ const Login = () => {
 					return;
 				}
 
-				localStorage.setItem( 'token', res.data.token );
 				localStorage.setItem( 'user', JSON.stringify( res.data ) );
 
 				setLoggedIn( true );
+				setRedirect( true );
 			} )
 			.catch( ( err ) => {
 				if ( err.response.data.data.status === 403 ) {
@@ -40,7 +40,7 @@ const Login = () => {
 			} );
 	};
 
-	if ( loggedIn || localStorage.getItem( 'token' ) ) {
+	if ( redirect || localStorage.getItem( 'token' ) ) {
 		return <Redirect to={ `/` } noThrow />;
 	}
 	return (
