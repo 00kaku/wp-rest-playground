@@ -1,5 +1,4 @@
 import NomatchMessage from '../NomatchMessage/NomatchMessage';
-
 const Nomatch = () => {
 	return (
 		<NomatchMessage

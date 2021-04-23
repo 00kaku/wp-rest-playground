@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from '../../axios';
 import Posts from '../../components/Posts/Posts';
 import NomatchMessage from '../../components/NomatchMessage/NomatchMessage';

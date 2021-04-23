@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Landing from './components/Landing/Landing';
@@ -13,9 +13,17 @@ function App() {
 	const [ loggedIn, setLoggedIn ] = useState(
 		localStorage.getItem( 'user' ) ? true : false
 	);
+	const [ user, setUser ] = useState(
+		JSON.parse( localStorage.getItem( 'user' ) ) || ''
+	);
 	return (
 		<div>
-			<Navbar { ...{ loggedIn, setLoggedIn } } />
+			<Navbar
+				loggedIn={ loggedIn }
+				setLoggedIn={ setLoggedIn }
+				user={ user }
+				setUser={ setUser }
+			/>
 			<Switch>
 				<Route path="/" exact>
 					<div className="landing__container">
@@ -31,12 +39,18 @@ function App() {
 
 				<Route path="/search" component={ PostsSearch } />
 
-				<Route path="*/post/:id" component={ Post } />
+				<Route
+					path="*/post/:id"
+					render={ () => <Post user={ user } /> }
+				/>
 
 				<Route
 					path="/login"
-					render={ ( routeProps ) => (
-						<Login { ...{ setLoggedIn, ...routeProps } } />
+					render={ () => (
+						<Login
+							setLoggedIn={ setLoggedIn }
+							setUser={ setUser }
+						/>
 					) }
 				/>
 

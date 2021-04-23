@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from '../../axios';
 import { Redirect } from 'react-router-dom';
 import Error from '../Error/Error';
 import './Login.css';
 
-const Login = ( { setLoggedIn } ) => {
+const Login = ( { setLoggedIn, setUser } ) => {
 	const [ username, setUsername ] = useState( '' );
 	const [ password, setPassword ] = useState( '' );
 	const [ redirect, setRedirect ] = useState( false );
@@ -29,6 +29,7 @@ const Login = ( { setLoggedIn } ) => {
 				localStorage.setItem( 'user', JSON.stringify( res.data ) );
 
 				setLoggedIn( true );
+				setUser( res.data );
 				setRedirect( true );
 			} )
 			.catch( ( err ) => {
@@ -40,7 +41,7 @@ const Login = ( { setLoggedIn } ) => {
 			} );
 	};
 
-	if ( redirect || localStorage.getItem( 'token' ) ) {
+	if ( redirect || localStorage.getItem( 'user' ) ) {
 		return <Redirect to={ `/` } noThrow />;
 	}
 	return (

@@ -32,13 +32,24 @@
 .nav-heading{
 	display:flex;
 	align-items: center;
-	justify-content:space-between;
 }
 .icon {
 	display:none;
 }
-
-
+.user-nav{
+	display:flex;
+	margin-left: auto;
+	align-items:center;
+}
+.user__diaplay__icon{
+	width:30px;
+	height:30px;
+	border-radius: 50%;
+	background-color:#036b86;
+	margin-right: 5px;
+	text-align: center;
+	padding-top: 7px;
+}
 @media only screen and (max-width: 768px)
 {
 	.nav-main{

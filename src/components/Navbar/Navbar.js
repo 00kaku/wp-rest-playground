@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from '../../axios';
 import './Navbar.css';
 
-const Navbar = ( { loggedIn, setLoggedIn } ) => {
+const Navbar = ( { loggedIn, setLoggedIn, user, setUser } ) => {
 	const [ nav, setNav ] = useState( '' );
 
 	useEffect( () => {
@@ -13,7 +13,7 @@ const Navbar = ( { loggedIn, setLoggedIn } ) => {
 	}, [] );
 
 	const menuToggle = () => {
-		document.getElementById( 'menu-menu' ).style.display === 'none'
+		'none' === document.getElementById( 'menu-menu' ).style.display
 			? ( document.getElementById( 'menu-menu' ).style.display = 'block' )
 			: ( document.getElementById( 'menu-menu' ).style.display = 'none' );
 	};
@@ -21,14 +21,20 @@ const Navbar = ( { loggedIn, setLoggedIn } ) => {
 	const handleLogout = () => {
 		localStorage.removeItem( 'user' );
 		setLoggedIn( false );
+		setUser( '' );
 	};
 
 	return (
 		<div className="nav-main">
 			<div className="nav-heading">
-				<h1>
+				{ user && (
+					<span className="user__diaplay__icon">
+						{ user?.user_display_name.substr( 0, 1 ) }
+					</span>
+				) }
+				<h3>
 					<a href="/">WP-REST-PLAYGROUND </a>
-				</h1>
+				</h3>
 				<span>
 					<i
 						className="fas fa-bars icon"
@@ -40,12 +46,12 @@ const Navbar = ( { loggedIn, setLoggedIn } ) => {
 				</span>
 			</div>
 			<div dangerouslySetInnerHTML={ { __html: nav } }></div>
-			{ loggedIn ? (
+			{ loggedIn && user ? (
 				<div className="user-nav">
 					<button
 						onClick={ () => handleLogout() }
 						onKeyDown={ ( event ) =>
-							event.key === 'Enter' && handleLogout()
+							'Enter' === event.key && handleLogout()
 						}
 					>
 						LOGOUT

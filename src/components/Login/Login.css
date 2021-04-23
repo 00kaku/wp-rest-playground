@@ -16,6 +16,17 @@
 	margin-bottom: 5px;
 }
 
+.login__container form button{
+	background:#222;
+	color: #fff;
+	font-size: medium;
+	font-weight: bold;
+	padding: 15px;
+	width:144px;
+	border-radius: 10px;
+	margin-left: calc(50% - 72px);
+}
+
 .login__error{
 	margin-top: 20px;
 	width:100%;
