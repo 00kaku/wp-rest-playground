@@ -6,7 +6,7 @@ import NomatchMessage from '../NomatchMessage/NomatchMessage';
 import axios from '../../axios';
 const Comments = ( { comments, setShowComments, user } ) => {
 	const [ commentsLocal ] = useState( comments );
-	const [ postComment, setComment ] = useState();
+	const [ postComment, setComment ] = useState( '' );
 	const [ success, setSuccess ] = useState( false );
 	const [ failed, setFailed ] = useState( false );
 	const id = window.location.pathname.split( '/' ).pop();
@@ -22,7 +22,7 @@ const Comments = ( { comments, setShowComments, user } ) => {
 					{
 						author_email: user.user_email,
 						author_name: user.user_display_name,
-						content: postComment,
+						content: postComment.replace( /(<([^>]+)>)/gi, '' ),
 						post: id,
 					},
 					{
