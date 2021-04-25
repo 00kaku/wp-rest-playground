@@ -9,6 +9,11 @@ import Post from './components/Post/Post';
 import Login from './components/Login/Login';
 
 import { Switch, Route } from 'react-router-dom';
+/**
+ * The top component that decides the structure of the whole application based on where user wants to go.
+ *
+ * @return {React.Component} Return the main app component with inner components switching based on route the user is at.
+ */
 function App() {
 	const [ loggedIn, setLoggedIn ] = useState(
 		localStorage.getItem( 'user' ) ? true : false

@@ -3,6 +3,12 @@ import axios from '../../axios';
 import Posts from '../../components/Posts/Posts';
 import NomatchMessage from '../../components/NomatchMessage/NomatchMessage';
 import Error from '../../components/Error/Error';
+
+/**
+ * The container for the posts searched by term by using the search bar on main page.
+ *
+ * @return {React.Component} Return the PostsSearch component.
+ */
 const PostsSearch = () => {
 	const term = localStorage.getItem( 'term' );
 	const [ posts, setPosts ] = useState( [] );
@@ -42,6 +48,6 @@ const PostsSearch = () => {
 			<Posts posts={ posts } />
 		);
 
-	return <div>{ error !== null ? <Error /> : postData }</div>;
+	return <div>{ null !== error ? <Error /> : postData }</div>;
 };
 export default PostsSearch;

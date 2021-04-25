@@ -1,6 +1,13 @@
+import React from 'react';
 import './Posts.css';
 import { Link } from 'react-router-dom';
 
+/**
+ * Component that renders a list of posts' thumbnail cards in a grid.
+ *
+ * @param {Object} props Component properties.
+ * @param {Array} props.posts The array that contains the posts.
+ * @return {React.Component} Returns the Posts component.*/
 const Posts = ( { posts } ) => {
 	return (
 		<div className="posts">

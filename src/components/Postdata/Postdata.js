@@ -1,7 +1,18 @@
+import React from 'react';
 import NomatchMessage from '../NomatchMessage/NomatchMessage';
 import GoBackButton from '../GoBackButton/GoBackButton';
+/**
+ * The component that will actually render the data for an individual post.
+ *
+ * @param {Object} props Component properties.
+ * @param {Object} props.post The post( Defined at Post component ) that is to be rendered.
+ * @param {boolean} props.isLoading The bit ( Defined at Post component ) that is to be passed to Nomatch message if fetch return null.
+ * @param {Array} props.comments The array( Defined at Post component ) that contains the comments of the post.
+ * @param {Function} props.setShowComments The funciton( Defined at Post component ) that is used to toggle comments visibility.
+ * @return {React.Component} Return the PostData component.
+ **/
 const Postdata = ( { post, isLoading, comments, setShowComments } ) => {
-	return post === undefined || post === null ? (
+	return ! post || null === post ? (
 		<NomatchMessage
 			message={ 'There is no such post available.' }
 			isLoading={ isLoading }
@@ -24,7 +35,7 @@ const Postdata = ( { post, isLoading, comments, setShowComments } ) => {
 			<div className="show__comments__box">
 				<p>
 					Total Comments:
-					{ comments?.length >= 0
+					{ 0 <= comments?.length
 						? comments.length
 						: 'Unable to fetch comments due to api error.' }
 				</p>

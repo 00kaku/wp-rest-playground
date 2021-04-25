@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './Landing.css';
 import { Redirect, Link } from 'react-router-dom';
-
+/**
+ * The component for main landing page of the application.
+ *
+ * @return {React.Component} Return the landing page component.
+ */
 const Landing = () => {
 	const [ term, setTerm ] = useState( '' );
 	const [ redirect, setRedirect ] = useState( false );
 	const user = JSON.parse( localStorage.getItem( 'user' ) ) || '';
+	/**
+	 * The function to search any term in the posts.
+	 *
+	 * @return {undefined}
+	 */
 	const search = () => {
 		if ( term ) {
 			localStorage.setItem( 'term', term );
@@ -32,7 +41,7 @@ const Landing = () => {
 					placeholder="Search for a fictional character...."
 					onChange={ ( e ) => setTerm( e.target.value ) }
 					onKeyDown={ ( event ) =>
-						event.key === 'Enter' ? search() : null
+						'Enter' === event.key ? search() : null
 					}
 				/>
 				<span>
@@ -42,7 +51,7 @@ const Landing = () => {
 						role="button"
 						tabIndex={ 0 }
 						onKeyDown={ ( event ) =>
-							event.key === 'Enter' ? search() : null
+							'Enter' === event.key ? search() : null
 						}
 					/>
 				</span>

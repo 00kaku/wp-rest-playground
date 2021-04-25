@@ -1,10 +1,16 @@
+import React from 'react';
+/**
+ * The component for a button to go back to previous page/post.
+ *
+ * @return {React.Component} Return the GoBackbutton component.
+ */
 const GoBackButton = () => {
 	return (
 		<span
 			onClick={ () => window.history.back() }
 			role="button"
 			onKeyDown={ ( event ) =>
-				event.key === 'Enter' ? window.history.back() : null
+				'Enter' === event.key ? window.history.back() : null
 			}
 			tabIndex={ 0 }
 		>

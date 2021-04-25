@@ -4,6 +4,11 @@ import { Redirect } from 'react-router-dom';
 import Posts from '../../components/Posts/Posts';
 import Error from '../../components/Error/Error';
 
+/**
+ * The container for the posts searched by category by using the buttons in the nav bar.
+ *
+ * @return {React.Component} Return the PostsCategory component.
+ */
 const PostsCategory = () => {
 	const [ posts, setPosts ] = useState( [] );
 	const [ noPost, setNoPost ] = useState( false );
@@ -13,7 +18,7 @@ const PostsCategory = () => {
 		axios
 			.get( `/wp-json/wc/v1/posts?category=${ category }` )
 			.then( ( res ) => {
-				if ( res.data === 'category does not exist' ) {
+				if ( 'category does not exist' === res.data ) {
 					setNoPost( true );
 				} else {
 					setPosts( res.data );
@@ -22,11 +27,11 @@ const PostsCategory = () => {
 			.catch( ( err ) => setError( err ) );
 	}, [] );
 
-	if ( noPost === true ) {
+	if ( true === noPost ) {
 		return <Redirect to="/404" />;
 	}
 	return (
-		<div>{ error !== null ? <Error /> : <Posts posts={ posts } /> }</div>
+		<div>{ null !== error ? <Error /> : <Posts posts={ posts } /> }</div>
 	);
 };
 

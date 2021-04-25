@@ -1,15 +1,31 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './Comments.css';
 import Error from '../Error/Error';
 import GoBackButton from '../GoBackButton/GoBackButton';
 import NomatchMessage from '../NomatchMessage/NomatchMessage';
 import axios from '../../axios';
+/**
+ * The container for the posts searched by category by using the buttons in the nav bar.
+ *
+ * @param {Object} props Component props.
+ * @param {Array} props.comments Comments for a post.
+ * @param {Function} props.setShowComments Function to show or hide comments.
+ * @param {Object} props.user Logged in user.
+ *
+ * @return {React.Component} Return the commments component.
+ */
 const Comments = ( { comments, setShowComments, user } ) => {
 	const [ commentsLocal ] = useState( comments );
 	const [ postComment, setComment ] = useState( '' );
 	const [ success, setSuccess ] = useState( false );
 	const [ failed, setFailed ] = useState( false );
 	const id = window.location.pathname.split( '/' ).pop();
+	/**
+	 *Function to post comments for a logged in user.
+	 *
+	 * @param {event} event Event generated when the user clicks on post comments.
+	 * @return {undefined}
+	 */
 	const postComments = ( event ) => {
 		event.preventDefault();
 		setSuccess( false );
@@ -32,11 +48,11 @@ const Comments = ( { comments, setShowComments, user } ) => {
 						},
 					}
 				)
-				.then( ( res ) => {
+				.then( () => {
 					setSuccess( true );
 					setComment( '' );
 				} )
-				.catch( ( err ) => setFailed( true ) );
+				.catch( () => setFailed( true ) );
 		}
 	};
 	return (
@@ -44,7 +60,7 @@ const Comments = ( { comments, setShowComments, user } ) => {
 			<span
 				onClick={ () => setShowComments( false ) }
 				onKeyDown={ ( event ) =>
-					event.key === 'Enter' ? setShowComments( false ) : null
+					'Enter' === event.key ? setShowComments( false ) : null
 				}
 				role="button"
 				tabIndex={ 0 }
@@ -54,7 +70,7 @@ const Comments = ( { comments, setShowComments, user } ) => {
 			<GoBackButton />
 			<div className="comments__inner">
 				<div>
-					{ comments === '' ? (
+					{ '' === comments ? (
 						<Error />
 					) : (
 						commentsLocal?.map( ( comment ) => {
@@ -109,7 +125,7 @@ const Comments = ( { comments, setShowComments, user } ) => {
 								role="button"
 								tabIndex={ 0 }
 								onKeyDown={ ( event ) =>
-									event.keyCode === 'Enter' &&
+									'Enter' === event.keyCode &&
 									setSuccess( true )
 								}
 							></i>
