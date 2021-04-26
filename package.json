@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
-    "@wordpress/eslint-plugin": "^9.0.3"
+    "@wordpress/eslint-plugin": "^9.0.3",
+    "eslint-plugin-jsx-a11y": "^6.4.1"
   }
 }
