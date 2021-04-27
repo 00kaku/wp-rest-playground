@@ -48,7 +48,7 @@
 		"no-else-return": [0],
 		"func-names": [0],
 		"object-shorthand": [0],
-		"indent": ["error", "tab"],
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"space-before-function-paren": 0,
 		"no-tabs": 0,
 		"prefer-destructuring": 0,

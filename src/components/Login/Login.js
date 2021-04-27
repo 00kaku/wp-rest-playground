@@ -3,20 +3,19 @@ import axios from '../../axios';
 import { Redirect } from 'react-router-dom';
 import Error from '../Error/Error';
 import './Login.css';
+import { AuthContext } from '../../contexts/AuthContext';
 /**
  * The componenet to implement the login functionality for the appplication.
  *
- * @param {Object} props Component props.
- * @param {Function} props.setLoggedIn The function to set the bit loggedIn(defined in App component) to mark that user is logged in.
- * @param {Function} props.setUser The function to set the user object (defined in App component) to be passed to other components.
  * @return {React.Component} Return the Login component.
  */
-const Login = ( { setLoggedIn, setUser } ) => {
+const Login = () => {
 	const [ username, setUsername ] = useState( '' );
 	const [ password, setPassword ] = useState( '' );
 	const [ redirect, setRedirect ] = useState( false );
 	const [ error, setError ] = useState( '' );
 	const [ failed, setFailed ] = useState( '' );
+	const { dispatch } = React.useContext( AuthContext );
 	/**
 	 * Function that will hit the JWT authentication api end point to login and return either success or valid error.
 	 *
@@ -38,15 +37,14 @@ const Login = ( { setLoggedIn, setUser } ) => {
 					setError( res.data.message );
 					return;
 				}
-
-				localStorage.setItem( 'user', JSON.stringify( res.data ) );
-
-				setLoggedIn( true );
-				setUser( res.data );
+				dispatch( {
+					type: 'LOGIN',
+					payload: res.data,
+				} );
 				setRedirect( true );
 			} )
 			.catch( ( err ) => {
-				if ( 403 === err.response.data.data.status ) {
+				if ( 403 === err.response?.data?.data?.status ) {
 					setError( err.response.data.message );
 				} else {
 					setFailed( err );

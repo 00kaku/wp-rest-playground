@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Landing.css';
 import { Redirect, Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 /**
  * The component for main landing page of the application.
  *
@@ -9,7 +10,7 @@ import { Redirect, Link } from 'react-router-dom';
 const Landing = () => {
 	const [ term, setTerm ] = useState( '' );
 	const [ redirect, setRedirect ] = useState( false );
-	const user = JSON.parse( localStorage.getItem( 'user' ) ) || '';
+	const { state } = React.useContext( AuthContext );
 	/**
 	 * The function to search any term in the posts.
 	 *
@@ -56,7 +57,7 @@ const Landing = () => {
 					/>
 				</span>
 			</div>
-			{ user ? (
+			{ state.user ? (
 				''
 			) : (
 				<Link to="/login" className="login__button">

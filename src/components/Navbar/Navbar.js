@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios';
 import './Navbar.css';
+import { AuthContext } from '../../contexts/AuthContext';
 
 /**
  * The comonent for the navigation bar of the application.
  *
- * @param {Object} props Component props.
- * @param {boolean} props.loggedIn The bit (Defined at App component) that will tell if the user is logged in, so that we can show/hide user's navigation.'
- * @param {Function} props.setLoggedIn The function(Defined at App component) to set/unset loggedIn.
- * @param {Object} props.user The object (Defined at App component) that represents the logged in user.
- * @param {Function} props.setUser The function(Defined at App component) to set/unset user.
  * @return {React.Component} Returns the Navbar component.
  */
-const Navbar = ( { loggedIn, setLoggedIn, user, setUser } ) => {
+const Navbar = () => {
 	const [ nav, setNav ] = useState( '' );
-
+	const { state, dispatch } = React.useContext( AuthContext );
 	useEffect( () => {
 		axios
 			.get( '/wp-json/wc/v1/nav' )
@@ -40,17 +36,17 @@ const Navbar = ( { loggedIn, setLoggedIn, user, setUser } ) => {
 	 * @return {undefined}
 	 */
 	const handleLogout = () => {
-		localStorage.removeItem( 'user' );
-		setLoggedIn( false );
-		setUser( '' );
+		dispatch( {
+			type: 'LOGOUT',
+		} );
 	};
 
 	return (
 		<div className="nav-main">
-			{ loggedIn && user ? (
+			{ state.loggedIn && state.user ? (
 				<div className="user-nav">
 					<span className="user__diaplay__icon">
-						{ user?.user_display_name.substr( 0, 1 ) }
+						{ state.user?.user_display_name.substr( 0, 1 ) }
 					</span>
 					<button
 						onClick={ () => handleLogout() }

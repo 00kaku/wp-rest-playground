@@ -4,18 +4,20 @@ import Postdata from '../Postdata/Postdata';
 import Comments from '../Comments/Comments';
 import Error from '../Error/Error';
 import './Post.css';
+import { AuthContext } from '../../contexts/AuthContext';
 /**
  * The container that renders the individual post based on its id. It uses two compoents PostData and Comments.
  *
  * @param {Object} props Component properties.
  * @param {Object} props.user The object that represents the logged in user.
  * @return {React.Component} Returns the Post component.*/
-const Post = ( { user } ) => {
+const Post = () => {
 	const [ post, setPost ] = useState( null );
 	const [ isLoading, setLoading ] = useState( true );
 	const [ comments, setComments ] = useState( [] );
 	const [ showComments, setShowComments ] = useState( false );
 	const [ error, setError ] = useState();
+	const { state } = React.useContext( AuthContext );
 	useEffect( () => {
 		const id = window.location.pathname.split( '/' ).pop();
 
@@ -39,7 +41,7 @@ const Post = ( { user } ) => {
 				<Comments
 					comments={ comments }
 					setShowComments={ setShowComments }
-					user={ user }
+					user={ state.user }
 				/>
 			) : (
 				( error && <Error /> ) || (
