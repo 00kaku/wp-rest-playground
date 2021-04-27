@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axios';
+import { getNav } from '../../api/api';
 import './Navbar.css';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -12,10 +12,7 @@ const Navbar = () => {
 	const [ nav, setNav ] = useState( '' );
 	const { state, dispatch } = React.useContext( AuthContext );
 	useEffect( () => {
-		axios
-			.get( '/wp-json/wc/v1/nav' )
-			.then( ( res ) => setNav( res.data ) )
-			.catch( () => setNav( '<p>Failed to load Nav</p>' ) );
+		getNav( setNav );
 	}, [] );
 
 	/**

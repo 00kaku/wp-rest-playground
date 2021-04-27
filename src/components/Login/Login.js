@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../../axios';
+import { login } from '../../api/api';
 import { Redirect } from 'react-router-dom';
 import Error from '../Error/Error';
 import './Login.css';
@@ -29,27 +29,7 @@ const Login = () => {
 			username,
 			password,
 		};
-
-		axios
-			.post( `/wp-json/jwt-auth/v1/token`, loginData )
-			.then( ( res ) => {
-				if ( ! res.data.token ) {
-					setError( res.data.message );
-					return;
-				}
-				dispatch( {
-					type: 'LOGIN',
-					payload: res.data,
-				} );
-				setRedirect( true );
-			} )
-			.catch( ( err ) => {
-				if ( 403 === err.response?.data?.data?.status ) {
-					setError( err.response.data.message );
-				} else {
-					setFailed( err );
-				}
-			} );
+		login( loginData, dispatch, setError, setFailed, setRedirect );
 	};
 
 	if ( redirect || localStorage.getItem( 'user' ) ) {

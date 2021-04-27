@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axios';
+import { getPostCategory } from '../../api/api';
 import { Redirect } from 'react-router-dom';
 import Posts from '../../components/Posts/Posts';
 import Error from '../../components/Error/Error';
@@ -15,16 +15,7 @@ const PostsCategory = () => {
 	const [ error, setError ] = useState( null );
 	useEffect( () => {
 		const category = window.location.pathname.split( '/' ).pop();
-		axios
-			.get( `/wp-json/wc/v1/posts?category=${ category }` )
-			.then( ( res ) => {
-				if ( 'category does not exist' === res.data ) {
-					setNoPost( true );
-				} else {
-					setPosts( res.data );
-				}
-			} )
-			.catch( ( err ) => setError( err ) );
+		getPostCategory( category, setPosts, setNoPost, setError );
 	}, [] );
 
 	if ( true === noPost ) {

@@ -3,7 +3,7 @@ import './Comments.css';
 import Error from '../Error/Error';
 import GoBackButton from '../GoBackButton/GoBackButton';
 import NomatchMessage from '../NomatchMessage/NomatchMessage';
-import axios from '../../axios';
+import { setComments } from '../../api/api';
 /**
  * The container for the posts searched by category by using the buttons in the nav bar.
  *
@@ -32,27 +32,14 @@ const Comments = ( { comments, setShowComments, user } ) => {
 		setFailed( false );
 
 		if ( postComment ) {
-			axios
-				.post(
-					`/wp-json/wp/v2/comments`,
-					{
-						author_email: user.user_email,
-						author_name: user.user_display_name,
-						content: postComment.replace( /(<([^>]+)>)/gi, '' ),
-						post: id,
-					},
-					{
-						headers: {
-							'Content-Type': 'application/json',
-							Authorization: `Bearer ${ user.token }`,
-						},
-					}
-				)
-				.then( () => {
-					setSuccess( true );
-					setComment( '' );
-				} )
-				.catch( () => setFailed( true ) );
+			setComments(
+				id,
+				postComment,
+				user,
+				setSuccess,
+				setComment,
+				setFailed
+			);
 		}
 	};
 	return (

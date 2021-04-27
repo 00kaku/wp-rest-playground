@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axios';
 import Postdata from '../Postdata/Postdata';
 import Comments from '../Comments/Comments';
 import Error from '../Error/Error';
 import './Post.css';
 import { AuthContext } from '../../contexts/AuthContext';
+import { getComments, getPost } from '../../api/api';
 /**
  * The container that renders the individual post based on its id. It uses two compoents PostData and Comments.
  *
@@ -18,19 +18,8 @@ const Post = () => {
 	const { state } = React.useContext( AuthContext );
 	useEffect( () => {
 		const id = window.location.pathname.split( '/' ).pop();
-
-		axios
-			.get( `/wp-json/wp/v2/posts?_embed&include=${ id }` )
-			.then( ( res ) => {
-				setPost( res.data[ 0 ] );
-				setLoading( false );
-			} )
-			.catch( ( err ) => setError( err ) );
-
-		axios
-			.get( `/wp-json/wp/v2/comments?post=${ id }` )
-			.then( ( res ) => setComments( res.data ) )
-			.catch( () => setComments( null ) );
+		getPost( id, setPost, setLoading, setError );
+		getComments( id, setComments );
 	}, [] );
 
 	return (
