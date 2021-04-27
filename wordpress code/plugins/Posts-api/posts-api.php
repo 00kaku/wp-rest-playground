@@ -31,16 +31,20 @@ function fetch_posts( $params ) {
 			return 'oops';
 		}
 
-		$data = array();
-		$i    = 0;
+		$data  = array();
+		$index = 0;
 
 		foreach ( $posts as $post ) {
-			$data[ $i ]['id']                          = $post->ID;
-			$data[ $i ]['title']                       = $post->post_title;
-			$data[ $i ]['content']                     = $post->post_content;
-			$data[ $i ]['featured_image']['thumbnail'] = get_the_post_thumbnail_url( $post->ID, 'thumbnail' );
-			$data[ $i ]['featured_image']['large']     = get_the_post_thumbnail_url( $post->ID, 'large' );
-			$i++;
+			$data[ $index ] = array(
+				'id'             => $post->ID,
+				'title'          => $post->post_title,
+				'content'        => $post->post_content,
+				'featured_image' => array(
+					'thumbnail' => get_the_post_thumbnail_url( $post->ID, 'thumbnail' ),
+					'large'     => get_the_post_thumbnail_url( $post->ID, 'large' ),
+				),
+			);
+			$index++;
 		}
 
 		return $data;
