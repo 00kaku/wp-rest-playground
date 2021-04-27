@@ -8,8 +8,6 @@ import { AuthContext } from '../../contexts/AuthContext';
 /**
  * The container that renders the individual post based on its id. It uses two compoents PostData and Comments.
  *
- * @param {Object} props Component properties.
- * @param {Object} props.user The object that represents the logged in user.
  * @return {React.Component} Returns the Post component.*/
 const Post = () => {
 	const [ post, setPost ] = useState( null );
