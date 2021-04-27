@@ -15,7 +15,7 @@
  * @return 'Navbar'
  */
 function add_nav() {
-	return wp_nav_menu( 'menu' );
+	return wp_nav_menu( array( 'menu' ) );
 }
 	add_action(
 		'rest_api_init',

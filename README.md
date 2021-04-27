@@ -32,7 +32,7 @@ irrespective of login can search the posts based on some term from the home page
 2. Create a local wordpress installation using any tool of your choice. In the project LocalWp by flywheel is used. (**https://localwp.com/**).
 3. Copy the content of **Wordpress Code/Plugins/** into the plugins directory of your local install to create the functionality of custom end points in the api.
 4. Go to the wordpress admin panel and activated the 2 new plugins.
-5. Change the **REACT_BASE_URL** variable's value with your local wordpress installation's url.
+5. Change the **REACT_APP_WP_SITE_URL** variable's value with your local wordpress installation's url.
 6. Create some posts in your wordpress installation with some separate categories.
 7. Create a menu in wordpress admin panel with the name **menu**.
 8. Add custom links in the menu with the url in format **/posts/:your_category_here:**. For example for a category DC the url will look like /posts/dc.
