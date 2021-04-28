@@ -13,7 +13,7 @@ irrespective of login can search the posts based on some term from the home page
 **Posts' List Page**
 ![Screenshot from 2021-04-23 17-50-20](https://user-images.githubusercontent.com/22026768/115870283-a78e4f00-a45c-11eb-831d-919a5789e1d9.png)
 
-** Post Page **
+**Post Page**
 ![Screenshot from 2021-04-23 17-50-35](https://user-images.githubusercontent.com/22026768/115870320-b7a62e80-a45c-11eb-82c7-cc25dcb00eb2.png)
 
 **Comments Page**
