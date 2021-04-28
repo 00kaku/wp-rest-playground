@@ -20,10 +20,10 @@ irrespective of login can search the posts based on some term from the home page
 ![Screenshot from 2021-04-23 17-50-45](https://user-images.githubusercontent.com/22026768/115870387-d1477600-a45c-11eb-923e-1bc359da0f22.png)
 ![Screenshot from 2021-04-23 17-51-09](https://user-images.githubusercontent.com/22026768/115870391-d278a300-a45c-11eb-89a0-765f73fa571f.png)
 
-** Wordpress admin page for url format**
+**Wordpress admin page for url format**
 ![Screenshot from 2021-04-23 17-49-35](https://user-images.githubusercontent.com/22026768/115870425-ddcbce80-a45c-11eb-8684-31e668693507.png)
 
-** Error 404 Page **
+**Error 404 Page**
 ![Screenshot from 2021-04-23 17-51-29](https://user-images.githubusercontent.com/22026768/115870459-e7553680-a45c-11eb-85b0-33956123dfab.png)
 
 
